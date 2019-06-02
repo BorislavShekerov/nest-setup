@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  redis:
+    image: redis
+    container_name: redis-dev
+    ports:
+      - '7379:6379'
+  postgres:
+    image: postgres:9.6
+    container_name: postgres-dev
+    ports:
+      - '6432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=test
