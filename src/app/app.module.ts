@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { HelloWorldModule } from './hello-world'
+import { ToDoModule } from './to-do'
+import { TypeOrmModuleFactory } from '../shared-components/module-factories'
 
 @Module({
-  imports: [HelloWorldModule],
+  imports: [
+    ToDoModule,
+    TypeOrmModule.forRootAsync({
+      useFactory: TypeOrmModuleFactory.create
+    }),
+  ],
 })
 export class AppModule {
 }

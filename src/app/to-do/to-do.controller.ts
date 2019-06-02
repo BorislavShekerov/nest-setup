@@ -1,0 +1,25 @@
+import { Controller, Get, Post, Body } from '@nestjs/common'
+import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
+
+import { ToDoService } from './to-do.service'
+import { ToDo } from './entities/ToDo.entity'
+import { ToDoCreationRequest } from './requests/ToDoCreation.request'
+
+@Controller()
+export class ToDoController {
+
+  constructor(private readonly ToDoService: ToDoService) {
+  }
+
+  @Get('/to-dos')
+  @ApiResponse({ status: 200, type: ToDo, isArray: true })
+  getHello(): Promise<ToDo[]> {
+    return this.ToDoService.getAll()
+  }
+
+  @Post('/to-dos')
+  @ApiImplicitBody({ name: 'ToDoCreationRequest', type: ToDoCreationRequest })
+  createToDo(@Body() { name }: ToDoCreationRequest): Promise<ToDo> {
+    return this.ToDoService.createToDo(name)
+  }
+}

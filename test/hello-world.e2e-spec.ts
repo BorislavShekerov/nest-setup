@@ -2,7 +2,7 @@ import * as request from 'supertest'
 
 import { setUp } from './before-each.util'
 
-describe('HelloWorldController (e2e)', () => {
+describe('ToDoController (e2e)', () => {
   let app;
 
   beforeEach(async () => {
