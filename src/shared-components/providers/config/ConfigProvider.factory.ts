@@ -1,4 +1,4 @@
-import { ConfigProvider, LocalConfigProvider, DeployedEnvironmentConfigProvider } from './ConfigProvider'
+import { ConfigProvider, LocalConfigProvider, DeployedEnvironmentConfigProvider } from './providers'
 
 /** A mechanism for retrieving the right {@link ConfigProvider} to use based on the current runtime environment. */
 export class ConfigProviderFactory {

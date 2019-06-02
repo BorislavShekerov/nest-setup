@@ -8,10 +8,10 @@ export class ToDo {
 
   @PrimaryGeneratedColumn()
   @ApiModelProperty()
-  id: number;
+  id: number
 
   @Column({ length: 200 })
   @ApiModelProperty()
-  name: string;
+  name: string
 
 }

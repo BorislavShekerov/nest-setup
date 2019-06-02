@@ -21,6 +21,6 @@ export class ToDoCreation1515769694450 implements MigrationInterface {
   }
 
   async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable('to_do');
+    await queryRunner.dropTable('to_do')
   }
 }

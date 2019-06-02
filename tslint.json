@@ -36,8 +36,11 @@
       "spaces",
       2
     ],
+    "max-classes-per-file": [
+      false,
+      1
+    ],
     "jsdoc-format": true,
-    "member-access": false,
     "arrow-parens": false,
     "object-literal-sort-keys": false,
     "trailing-comma": [
@@ -48,7 +51,7 @@
           "arrays": "false",
           "functions": "never",
           "typeLiterals": "ignore"
-        },
+        }
       }
     ],
     "no-console": [
