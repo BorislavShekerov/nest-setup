@@ -1,43 +1,19 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "jsRules": {
     "no-unused-expression": true
   },
   "rules": {
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "member-access": [
-      false
-    ],
-    "ordered-imports": [
-      false
-    ],
-    "max-line-length": [
-      true,
-      150
-    ],
-    "member-ordering": [
-      true
-    ],
-    "interface-name": [
-      false
-    ],
-    "semicolon": [
-      true,
-      "never"
-    ],
-    "indent": [
-      true,
-      "spaces",
-      2
-    ],
+    "quotemark": [true, "single"],
+    "member-access": [false],
+    "ordered-imports": [false],
+    "member-ordering": [true],
+    "interface-name": [false],
+    "semicolon": [true, "never"],
+    "indent": [true, "spaces", 2],
+    "max-classes-per-file": [false, 1],
     "jsdoc-format": true,
-    "member-access": false,
     "arrow-parens": false,
     "object-literal-sort-keys": false,
     "trailing-comma": [
@@ -48,17 +24,10 @@
           "arrays": "false",
           "functions": "never",
           "typeLiterals": "ignore"
-        },
+        }
       }
     ],
-    "no-console": [
-      true,
-      "debug",
-      "log",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": [true, "debug", "log", "time", "timeEnd", "trace"],
     "no-empty-interface": true,
     "no-for-in-array": true,
     "no-import-side-effect": [
@@ -67,10 +36,7 @@
         "ignore-pattern": "/rxjs.*/"
       }
     ],
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": [true, "ignore-params"],
     "no-internal-module": true,
     "no-invalid-template-strings": true,
     "no-irregular-whitespace": true,
@@ -100,10 +66,7 @@
       "check-open-brace",
       "check-whitespace"
     ],
-    "only-arrow-functions": [
-      true,
-      "allow-declarations"
-    ],
+    "only-arrow-functions": [true, "allow-declarations"],
     "prefer-const": true,
     "prefer-for-of": true,
     "prefer-object-spread": true,
@@ -117,10 +80,7 @@
         "named": "never"
       }
     ],
-    "triple-equals": [
-      true,
-      "allow-undefined-check"
-    ],
+    "triple-equals": [true, "allow-undefined-check"],
     "typedef-whitespace": [
       true,
       {

@@ -44,7 +44,9 @@
     "@types/supertest": "^2.0.7",
     "concurrently": "^4.1.0",
     "fastify": "^2.4.1",
+    "husky": "^2.3.0",
     "jest": "^23.6.0",
+    "lint-staged": "^8.1.7",
     "nodemon": "^1.18.9",
     "prettier": "^1.15.3",
     "supertest": "^3.4.1",
@@ -58,6 +60,23 @@
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-node-externals": "^1.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "tslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "moduleFileExtensions": [

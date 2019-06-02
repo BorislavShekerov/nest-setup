@@ -14,5 +14,3 @@ import { ToDo } from './entities/ToDo.entity'
   providers: [ToDoService, TestPipelineService],
 })
 export class ToDoModule { }
-
-
