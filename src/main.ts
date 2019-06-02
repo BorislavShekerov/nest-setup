@@ -4,6 +4,8 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import * as helmet from 'helmet'
+import * as csurf from 'csurf'
 
 import { CorsConfiguratior, CustomLogger } from './config'
 import { AppModule } from './app/app.module'
@@ -17,6 +19,8 @@ async function bootstrap() {
     }
   )
   CorsConfiguratior.configureCORS(app)
+  app.use(helmet())
+  app.use(csurf())
 
   const options = new DocumentBuilder()
     .setTitle('ToDo example')
