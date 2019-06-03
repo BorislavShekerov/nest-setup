@@ -41,7 +41,7 @@ export class DeployedEnvironmentConfigProvider implements ConfigProvider {
         logLevel: Joi.string()
       }),
       {
-        domain: process.env.UI_DOMAIN
+        logLevel: process.env.LOG_LEVEL
       }
     ).logLevel
   }
