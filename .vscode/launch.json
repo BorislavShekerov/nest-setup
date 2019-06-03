@@ -9,10 +9,7 @@
       "request": "launch",
       "name": "Debug App",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "start:debug"
-      ],
+      "runtimeArgs": ["run-script", "start:debug"],
       "port": 9229
     },
     {
@@ -20,10 +17,7 @@
       "request": "launch",
       "name": "Debug Unit Test",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "test:debug"
-      ],
+      "runtimeArgs": ["run-script", "test:debug"],
       "port": 9229
     },
     {
@@ -31,10 +25,7 @@
       "request": "launch",
       "name": "Debug Integraton Test",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "test:e2e:debug"
-      ],
+      "runtimeArgs": ["run-script", "test:integration:debug"],
       "port": 9229
     }
   ]

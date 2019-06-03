@@ -9,7 +9,9 @@ export class LocalConfigProvider implements ConfigProvider {
       port: 5432,
       username: 'postgres',
       password: '',
-      database: 'db'
+      database: 'db',
+      customEntitiesLocation: process.env.ENV === 'TEST' ? 'src/app/**/*.entity{.ts,.js}' : null,
+      customMigrationsLocation: process.env.ENV === 'TEST' ? 'src/db-migrations/*.js' : null
     }
   }
 

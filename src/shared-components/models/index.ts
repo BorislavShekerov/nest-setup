@@ -1,2 +1,3 @@
-export * from './environment.model'
-export * from './log-level.model'
+export * from './Environment.model'
+export * from './LogLevel.model'
+export * from './DbConfig.model'

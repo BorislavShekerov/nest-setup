@@ -1,14 +1,15 @@
 import { TestingModule, Test } from '@nestjs/testing'
 import { FastifyAdapter } from '@nestjs/platform-fastify'
 import { INestApplication } from '@nestjs/common'
+import { getConnection } from 'typeorm'
 
-import { AppModule } from 'src/app/app.module'
+import { AppModule } from '../src/app/app.module'
 
 /**
  * Creates the test fixture, bootstrapping the root {@link AppModule}.
  * Initializes the {@link INestApplication} allowing tests to execute HTTP requests against it.
  */
-export const setUp = async (): Promise<INestApplication> => {
+export const setUp = async (): Promise<{ app: INestApplication, moduleFixture: TestingModule }> => {
   const moduleFixture: TestingModule = await Test.createTestingModule({
     imports: [AppModule],
   }).compile()
@@ -17,5 +18,10 @@ export const setUp = async (): Promise<INestApplication> => {
   await app.init()
   await app.getHttpAdapter().getInstance().ready()
 
-  return app
+  return { app, moduleFixture }
+}
+
+export const tearDown = () => {
+  const connenction = getConnection()
+  return connenction.synchronize(true)
 }
