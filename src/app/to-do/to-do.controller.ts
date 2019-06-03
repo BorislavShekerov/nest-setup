@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
 import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
 
 import { ToDoService } from './to-do.service'
 import { ToDo } from './entities/ToDo.entity'
-import { ToDoCreationRequest } from './requests/ToDoCreation.request'
+import { ToDoRequest } from './requests/ToDoCreation.request'
 
 @Controller()
 export class ToDoController {
@@ -13,13 +13,25 @@ export class ToDoController {
 
   @Get('/to-dos')
   @ApiResponse({ status: 200, type: ToDo, isArray: true })
-  getHello(): Promise<ToDo[]> {
+  getToDos(): Promise<ToDo[]> {
     return this.toDoService.getAll()
   }
 
   @Post('/to-dos')
-  @ApiImplicitBody({ name: 'ToDoCreationRequest', type: ToDoCreationRequest })
-  createToDo(@Body() { name }: ToDoCreationRequest): Promise<ToDo> {
+  @ApiImplicitBody({ name: 'ToDoRequest', type: ToDoRequest })
+  createToDo(@Body() { name }: ToDoRequest): Promise<ToDo> {
     return this.toDoService.createToDo(name)
+  }
+
+  @Patch('/to-dos/:id')
+  @ApiResponse({ status: 200 })
+  async updateToDo(@Param('id') id: number, @Body() { name }: ToDoRequest): Promise<void> {
+    await this.toDoService.updateToDo(+id, name)
+  }
+
+  @Delete('/to-dos/:id')
+  @ApiResponse({ status: 200 })
+  deleteToDo(@Param('id') id: number): Promise<void> {
+    return this.toDoService.deleteToDo(id)
   }
 }

@@ -1,6 +1,6 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-export class ToDoCreationRequest {
+export class ToDoRequest {
   @ApiModelProperty()
   name: string
 }
