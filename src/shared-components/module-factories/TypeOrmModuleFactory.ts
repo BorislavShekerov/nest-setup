@@ -13,8 +13,8 @@ export class TypeOrmModuleFactory {
       username,
       password,
       database,
-      entities: ['dist/app/**/*.entity{.ts,.js}'],
-      migrations: ['dist/db-migrations/*.js'],
+      entities: ['dist/src/app/**/*.entity{.ts,.js}'],
+      migrations: ['dist/src/db-migrations/*.js'],
       synchronize: false,
       migrationsRun: true
     }
