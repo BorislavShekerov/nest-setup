@@ -1,10 +1,12 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
+import { TO_DO_TABLE } from '../app/to-do/entities/ToDo.entity'
+
 export class ToDoCreation1515769694450 implements MigrationInterface {
 
   async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(new Table({
-      name: 'to_do',
+      name: TO_DO_TABLE,
       columns: [
         {
           name: 'id',
@@ -21,6 +23,6 @@ export class ToDoCreation1515769694450 implements MigrationInterface {
   }
 
   async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable('to_do')
+    await queryRunner.dropTable(TO_DO_TABLE)
   }
 }

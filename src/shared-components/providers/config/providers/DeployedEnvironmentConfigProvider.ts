@@ -47,11 +47,9 @@ export class DeployedEnvironmentConfigProvider implements ConfigProvider {
   }
 
   private validateConfig<T>(schema: Joi.ObjectSchema, config: Record<string, string | number | undefined>): T {
-    const envVarsSchema: Joi.ObjectSchema = Joi.object(schema)
-
     const { error, value: validatedEnvConfig } = Joi.validate(
       config,
-      envVarsSchema,
+      schema,
     )
 
     if (error) {

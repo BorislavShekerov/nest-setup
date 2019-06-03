@@ -7,7 +7,10 @@ describe('ToDoController', () => {
   beforeEach(async () => {
     await Test.createTestingModule({
       controllers: [ToDoController],
-      providers: [ToDoService],
+      providers: [{
+        provide: ToDoService,
+        useValue: {}
+      }],
     }).compile()
   })
 

@@ -2,7 +2,7 @@ import { TestingModule, Test } from '@nestjs/testing'
 import { FastifyAdapter } from '@nestjs/platform-fastify'
 import { INestApplication } from '@nestjs/common'
 
-import { AppModule } from 'app/app.module'
+import { AppModule } from 'src/app/app.module'
 
 /**
  * Creates the test fixture, bootstrapping the root {@link AppModule}.
