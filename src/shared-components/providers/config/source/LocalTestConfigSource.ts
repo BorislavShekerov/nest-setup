@@ -1,16 +1,16 @@
 import { DbConfig, LogLevel } from '../../../models'
 import { ConfigSource } from './ConfigSource'
 
-export class LocalConfigSource implements ConfigSource {
+export class LocalTestConfigSource implements ConfigSource {
   public getDbConfig(): DbConfig {
     return {
       host: 'localhost',
-      port: 5432,
+      port: 5433,
       username: 'postgres',
       password: '',
-      database: 'db',
-      customEntitiesLocation: process.env.ENV === 'TEST' ? 'src/app/**/*.entity{.ts,.js}' : null,
-      customMigrationsLocation: process.env.ENV === 'TEST' ? 'src/db-migrations/*.js' : null
+      database: 'db_test',
+      customEntitiesLocation: 'src/app/**/*.entity{.ts,.js}',
+      customMigrationsLocation: 'src/db-migrations/*.js'
     }
   }
 

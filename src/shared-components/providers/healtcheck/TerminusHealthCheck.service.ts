@@ -3,7 +3,7 @@ import {
   TerminusOptionsFactory,
   TerminusModuleOptions,
   TypeOrmHealthIndicator,
-} from '@nestjs/terminus'
+} from '@nestjs/terminus/dist'
 import { Injectable } from '@nestjs/common'
 
 /** 

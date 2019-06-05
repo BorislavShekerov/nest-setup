@@ -3,7 +3,7 @@ import { FastifyAdapter } from '@nestjs/platform-fastify'
 import { INestApplication } from '@nestjs/common'
 import { getConnection } from 'typeorm'
 
-import { AppModule } from 'src/app/app.module'
+import { AppModule } from '../src/app/app.module'
 
 /**
  * Creates the test fixture, bootstrapping the root {@link AppModule}.
@@ -17,11 +17,12 @@ export const setUp = async (): Promise<{ app: INestApplication, moduleFixture: T
   const app = moduleFixture.createNestApplication(new FastifyAdapter())
   await app.init()
   await app.getHttpAdapter().getInstance().ready()
+  await cleanDatabase()
 
   return { app, moduleFixture }
 }
 
-export const tearDown = () => {
+export const cleanDatabase = (): Promise<any> => {
   const connenction = getConnection()
   return connenction.synchronize(true)
 }

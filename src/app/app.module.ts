@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { TerminusModule } from '@nestjs/terminus'
+import { TerminusModule } from '@nestjs/terminus/dist'
 
 import { ToDoModule } from './to-do'
 import { TypeOrmModuleFactory } from '../shared-components/module-factories'

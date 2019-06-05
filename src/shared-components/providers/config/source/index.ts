@@ -1,3 +1,3 @@
 export * from './ConfigSource'
-export * from './LocalConfigSource'
+export * from './LocalDevConfigSource'
 export * from './DeployedEnvironmentConfigSource'

@@ -1,7 +1,7 @@
 import * as request from 'supertest'
 
-import { setUp, tearDown } from './before-each.util'
-import { ToDoService } from 'src/app/to-do/ToDo.service'
+import { setUp, cleanDatabase } from './before-each.util'
+import { ToDoService } from '../src/app/to-do/ToDo.service'
 
 describe('integration:ToDoController', () => {
   let app
@@ -11,11 +11,11 @@ describe('integration:ToDoController', () => {
     const appAndFixture = await setUp()
     app = appAndFixture.app
     toDoService = appAndFixture.moduleFixture.get<ToDoService>(ToDoService)
-
-    await tearDown()
   })
 
-  afterEach(async () => await tearDown())
+  afterEach(async () => {
+    await cleanDatabase()
+  })
 
   it('/to-dos (GET)', async () => {
     const toDo = await toDoService.createToDo('test to-do')
@@ -60,4 +60,7 @@ describe('integration:ToDoController', () => {
         expect(createToDo.name).toEqual(name)
       })
   })
+
+  afterAll(async () => await app.close())
+
 })

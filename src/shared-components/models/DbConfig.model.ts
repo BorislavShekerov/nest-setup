@@ -6,7 +6,7 @@ export interface DbConfig {
   password: string
   database: string
   /** Used for defining a different path for integration tests. */
-  customEntitiesLocation: string | null
+  customEntitiesLocation?: string | null
   /** Used for defining a different path for integration tests. */
-  customMigrationsLocation: string | null
+  customMigrationsLocation?: string | null
 }
