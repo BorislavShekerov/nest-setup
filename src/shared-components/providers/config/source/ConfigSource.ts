@@ -1,8 +1,7 @@
-import { DbConfig } from '../ConfigProvider.model'
-import { LogLevel } from '../../../models'
+import { DbConfig, LogLevel } from '../../../models'
 
 /** A mechanism for providing environment-specific configuration properties. */
-export interface ConfigProvider {
+export interface ConfigSource {
 
   /** Retrieves the {@link DbConfig} based on the current environment. */
   getDbConfig(): DbConfig

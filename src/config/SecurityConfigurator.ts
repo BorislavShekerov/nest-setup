@@ -5,7 +5,7 @@ import { Logger } from '@nestjs/common'
 import * as helmet from 'helmet'
 
 import { Environment } from '../shared-components/models'
-import { ConfigProviderFactory } from '../shared-components/providers'
+import { ConfigSourceFactory } from '../shared-components/providers'
 import { Configurator } from './Configurator'
 
 const ENVIRONMENTS_WITH_LOCALHOST_ORIGIN_ENABLED: string[] = [
@@ -29,7 +29,7 @@ export class SecurityConfigurator implements Configurator {
   }
 
   private setupCors(app: NestFastifyApplication) {
-    const uiDomain = ConfigProviderFactory.getConfigProviderForEnvironment().getUserInterfaceDomain()
+    const uiDomain = ConfigSourceFactory.getConfigSourceForEnvironment().getUserInterfaceDomain()
     this.logger.log(`Enabling CORS for ${uiDomain}`)
 
     app.enableCors({

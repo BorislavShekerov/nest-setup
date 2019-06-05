@@ -1,0 +1,31 @@
+import {
+  TerminusEndpoint,
+  TerminusOptionsFactory,
+  TerminusModuleOptions,
+  TypeOrmHealthIndicator,
+} from '@nestjs/terminus'
+import { Injectable } from '@nestjs/common'
+
+/** 
+ * Defines a healthcheck service pinging the Database(+ optionally any other 3rd party services we have integrated with).
+ * In case of any of {@link HealthIndicator} failure (e.g. cannot connect to the database), a 503 response will be returned.
+ */
+@Injectable()
+export class TerminusHealthCheckService implements TerminusOptionsFactory {
+  constructor(
+    private readonly dbHealthIndicator: TypeOrmHealthIndicator
+  ) { }
+
+  createTerminusOptions(): TerminusModuleOptions {
+    const healthEndpoint: TerminusEndpoint = {
+      url: '/api/healthcheck',
+      healthIndicators: [
+        async () => this.dbHealthIndicator.pingCheck('database'),
+      ],
+    }
+
+    return {
+      endpoints: [healthEndpoint],
+    }
+  }
+}

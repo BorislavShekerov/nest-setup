@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { ToDoController } from './to-do.controller'
-import { ToDoService } from './to-do.service'
+import { ToDoController } from './ToDo.controller'
+import { ToDoService } from './ToDo.service'
 import { ToDo } from './entities/ToDo.entity'
 
 @Module({

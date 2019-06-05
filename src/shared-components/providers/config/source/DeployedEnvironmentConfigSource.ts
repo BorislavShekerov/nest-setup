@@ -1,10 +1,9 @@
 import * as Joi from '@hapi/joi'
 
-import { ConfigProvider } from './ConfigProvider'
-import { DbConfig } from '../ConfigProvider.model'
-import { LogLevel } from '../../../models'
+import { ConfigSource } from './ConfigSource'
+import { DbConfig, LogLevel } from '../../../models'
 
-export class DeployedEnvironmentConfigProvider implements ConfigProvider {
+export class DeployedEnvironmentConfigSource implements ConfigSource {
   public getDbConfig(): DbConfig {
     return this.validateConfig<DbConfig>(
       Joi.object({

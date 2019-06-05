@@ -22,12 +22,14 @@
     "test:integration:debug": "ENV=TEST node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config ./integration-tests/jest-integration.json"
   },
   "dependencies": {
+    "@godaddy/terminus": "^4.1.2",
     "@hapi/joi": "^15.0.3",
     "@nestjs/common": "^6.2.4",
     "@nestjs/core": "^6.0.0",
     "@nestjs/microservices": "^6.2.4",
     "@nestjs/platform-fastify": "^6.2.4",
     "@nestjs/swagger": "^3.0.2",
+    "@nestjs/terminus": "^6.3.0",
     "@nestjs/typeorm": "^6.1.1",
     "fastify-swagger": "^2.4.0",
     "helmet": "^3.18.0",

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
 import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
 
-import { ToDoService } from './to-do.service'
+import { ToDoService } from './ToDo.service'
 import { ToDo } from './entities/ToDo.entity'
 import { ToDoRequest } from './requests/ToDoCreation.request'
 

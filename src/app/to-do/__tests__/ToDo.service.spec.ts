@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing'
 import { getRepositoryToken } from '@nestjs/typeorm'
 
-import { ToDoService } from '../to-do.service'
+import { ToDoService } from '../ToDo.service'
 import { ToDo } from '../entities/ToDo.entity';
 
 describe('ToDoService', () => {

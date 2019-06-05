@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing'
 
-import { ToDoController } from '../to-do.controller'
-import { ToDoService } from '../to-do.service'
+import { ToDoController } from '../ToDo.controller'
+import { ToDoService } from '../ToDo.service'
 
 describe('ToDoController', () => {
   beforeEach(async () => {

@@ -1,8 +1,7 @@
-import { LogLevel } from '../../../models'
-import { DbConfig } from '../ConfigProvider.model'
-import { ConfigProvider } from './ConfigProvider'
+import { DbConfig, LogLevel } from '../../../models'
+import { ConfigSource } from './ConfigSource'
 
-export class LocalConfigProvider implements ConfigProvider {
+export class LocalConfigSource implements ConfigSource {
   public getDbConfig(): DbConfig {
     return {
       host: 'localhost',

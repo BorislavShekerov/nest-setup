@@ -1,3 +1,2 @@
-export * from './ConfigProvider.factory'
-export * from './ConfigProvider.model'
-export * from './providers/ConfigProvider'
+export * from './ConfigSource.factory'
+export * from './source/ConfigSource'

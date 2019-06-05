@@ -1,10 +1,10 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
-import { ConfigProviderFactory } from '../providers'
+import { ConfigSourceFactory } from '../providers'
 
 export class TypeOrmModuleFactory {
   static create(): TypeOrmModuleOptions {
     const { host, port, username, password, database, customEntitiesLocation, customMigrationsLocation } =
-      ConfigProviderFactory.getConfigProviderForEnvironment().getDbConfig()
+      ConfigSourceFactory.getConfigSourceForEnvironment().getDbConfig()
 
     return {
       type: 'postgres',

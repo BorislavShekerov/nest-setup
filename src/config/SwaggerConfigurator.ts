@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common'
 
 import { Configurator } from './Configurator'
 
+/** Hosts Swagger API documentation on /docs endpoints. */
 export class SwaggerConfigurator implements Configurator {
   private logger = new Logger('SwaggerConfigurator')
 

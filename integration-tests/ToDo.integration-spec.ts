@@ -1,7 +1,7 @@
 import * as request from 'supertest'
 
 import { setUp, tearDown } from './before-each.util'
-import { ToDoService } from '../src/app/to-do/to-do.service'
+import { ToDoService } from 'src/app/to-do/ToDo.service'
 
 describe('integration:ToDoController', () => {
   let app
