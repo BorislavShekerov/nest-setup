@@ -1,39 +1,52 @@
 ## Description
 
+A sample Nest project scaffold
+
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ yarn start
-
-# watch mode 
-$ yarn start:dev
+# local dev environment
+$ npm run db-start // Runs redis and postgres containers
+$ npm run start:dev // Starts the API in watch mode, refreshing on any file changes
 
 # production mode
-$ yarn start:prod
+$ npm run start:prod
 ```
 
 ## Test
 
 ```bash
-# run unit tests
-$ yarn test
+# run unit tests (single-run)
+$ npm test
+
+# run unit tests with watcher, rerunning tests on each change
+$ npm run test:watch
 
 # debug unit tests
-$ yarn test:debug
+$ npm run test:debug
 
-# e2e tests
-$ yarn test:e2e
+# run integration tests
+$ npm run test:integration
 
-# debug e2e tests
-$ yarn test:e2e:debug
+# debug integration tests
+$ npm run test:integration:debug
 
-# test coverage
-$ yarn test:cov
+# produce test coverage report
+$ npm run test:cov
+```
+
+## Other useful npm scripts
+
+```bash
+# format code
+$ npm run format
+
+# lint code
+$ npm run lint
 ```
