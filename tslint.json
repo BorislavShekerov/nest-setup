@@ -30,6 +30,7 @@
     "no-console": [true, "debug", "log", "time", "timeEnd", "trace"],
     "no-empty-interface": true,
     "no-for-in-array": true,
+    "implicit-arrow-linebreak": ["error", "beside"],
     "no-import-side-effect": [
       true,
       {
@@ -37,6 +38,9 @@
       }
     ],
     "no-inferrable-types": [true, "ignore-params"],
+    "dot-notation": "error",
+    "no-duplicate-imports": "error",
+    "no-useless-constructor": "error",
     "no-internal-module": true,
     "no-invalid-template-strings": true,
     "no-irregular-whitespace": true,
@@ -46,6 +50,8 @@
         "temporalDeadZone": false
       }
     ],
+    "no-new-object": true,
+    "no-var": true,
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
@@ -93,7 +99,21 @@
       "check-preblock",
       "check-separator",
       "check-type"
-    ]
+    ],
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": true,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "one-var": ["error", "never"],
+    "no-multi-assign": "error",
+    "no-plusplus": "error",
+    "no-unused-vars": "error"
   },
   "rulesDirectory": []
 }
