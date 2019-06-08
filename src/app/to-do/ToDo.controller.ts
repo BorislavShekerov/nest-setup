@@ -4,6 +4,7 @@ import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
 import { ToDoService } from './ToDo.service'
 import { ToDo } from './entities/ToDo.entity'
 import { ToDoRequest } from './requests/ToDoCreation.request'
+import { Roles } from '../../shared-components/decorators'
 
 @Controller()
 export class ToDoController {
@@ -13,6 +14,7 @@ export class ToDoController {
 
   @Get('/to-dos')
   @ApiResponse({ status: 200, type: ToDo, isArray: true })
+  @Roles('ADMIN')
   getToDos(): Promise<ToDo[]> {
     return this.toDoService.getAll()
   }

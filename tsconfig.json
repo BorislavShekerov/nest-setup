@@ -12,13 +12,12 @@
     "noUnusedParameters": true,
     "importHelpers": true,
     "noEmitHelpers": true,
+    "lib": ["es6", "es2017"],
     "target": "es6",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
+    "incremental": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

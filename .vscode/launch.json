@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Debug App",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "start:debug"],
+      "runtimeArgs": ["run-script", "start:dev:debug"],
       "port": 9229
     },
     {

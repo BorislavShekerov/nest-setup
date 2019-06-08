@@ -6,9 +6,10 @@ import {
 } from '@nestjs/terminus/dist'
 import { Injectable } from '@nestjs/common'
 
-/** 
- * Defines a healthcheck service pinging the Database(+ optionally any other 3rd party services we have integrated with).
- * In case of any of {@link HealthIndicator} failure (e.g. cannot connect to the database), a 503 response will be returned.
+/**
+ * Defines a healthcheck service pinging the Database
+ * + optionally any other 3rd party services we have integrated with).
+ * In case of any of {@link HealthIndicator} failure a 503 response will be returned.
  */
 @Injectable()
 export class TerminusHealthCheckService implements TerminusOptionsFactory {

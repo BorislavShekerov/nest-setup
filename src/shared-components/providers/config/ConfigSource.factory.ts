@@ -1,5 +1,5 @@
 import { ConfigSource, LocalDevConfigSource, DeployedEnvironmentConfigSource } from './source'
-import { LocalTestConfigSource } from './source/LocalTestConfigSource';
+import { LocalTestConfigSource } from './source/LocalTestConfigSource'
 
 /** A mechanism for retrieving the right {@link ConfigSource} to use based on the current runtime environment. */
 export class ConfigSourceFactory {
