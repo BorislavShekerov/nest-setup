@@ -4,12 +4,13 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify'
 
-import { SwaggerConfigurator, SecurityConfigurator, CustomLogger } from './config'
+import { SwaggerConfigurator, SecurityConfigurator, CustomLogger, GlobalPipeConfigurator } from './config'
 import { AppModule } from './app/app.module'
 
 const APP_CONFIGURATORS = [
   new SecurityConfigurator(),
-  new SwaggerConfigurator()
+  new SwaggerConfigurator(),
+  new GlobalPipeConfigurator()
 ]
 
 async function bootstrap() {

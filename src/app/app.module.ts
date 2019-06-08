@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { TerminusModule } from '@nestjs/terminus'
+import { TerminusModule } from '@nestjs/terminus/dist'
 import { APP_GUARD } from '@nestjs/core'
-import { PassportModule } from '@nestjs/passport'
 
 import { ToDoModule } from './to-do'
 import { TypeOrmModuleFactory } from '../shared-components/module-factories'
 import { TerminusHealthCheckService } from '../shared-components/providers/healtcheck/TerminusHealthCheck.service'
 import { RolesGuard } from '../shared-components/guards/RolesGuard'
-import { RequestValidationAdapter } from '../shared-components/guards/RequestValidationAdapter'
+import { SessionValidationAdapter } from '../shared-components/guards/SessionValidationAdapter'
 
 @Module({
   imports: [
@@ -19,14 +18,13 @@ import { RequestValidationAdapter } from '../shared-components/guards/RequestVal
     TerminusModule.forRootAsync({
       useClass: TerminusHealthCheckService,
     }),
-    PassportModule.register({ defaultStrategy: 'bearer' }),
   ],
   providers: [
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    RequestValidationAdapter
+    SessionValidationAdapter
   ],
 })
 export class AppModule {

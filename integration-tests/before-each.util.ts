@@ -3,7 +3,7 @@ import { FastifyAdapter } from '@nestjs/platform-fastify'
 import { INestApplication } from '@nestjs/common'
 import { getConnection } from 'typeorm'
 
-import { AppModule } from '../src/app/app.module'
+import { AppModule } from 'src/app/app.module'
 
 /**
  * Creates the test fixture, bootstrapping the root {@link AppModule}.

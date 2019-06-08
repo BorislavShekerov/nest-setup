@@ -1,13 +1,13 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { RequestValidationAdapter, User } from './RequestValidationAdapter'
+import { SessionValidationAdapter, User } from './SessionValidationAdapter'
 
 @Injectable()
 export class RolesGuard implements CanActivate {
 
   constructor(
     private readonly reflector: Reflector,
-    private readonly requestValidationAdapter: RequestValidationAdapter
+    private readonly requestValidationAdapter: SessionValidationAdapter
   ) { }
 
   async canActivate(
