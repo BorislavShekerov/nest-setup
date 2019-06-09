@@ -3,35 +3,35 @@ import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
 
 import { ToDoService } from './ToDo.service'
 import { ToDo } from './entities/ToDo.entity'
-import { ToDoRequest } from './requests/ToDoCreation.request'
+import { ToDoRequest } from './requests/ToDo.request'
 import { Roles } from '../../shared-components/decorators'
 
-@Controller()
+@Controller('to-dos')
 export class ToDoController {
 
   constructor(private readonly toDoService: ToDoService) {
   }
 
-  @Get('/to-dos')
+  @Get()
   @ApiResponse({ status: 200, type: ToDo, isArray: true })
   @Roles('ADMIN')
   getToDos(): Promise<ToDo[]> {
     return this.toDoService.getAll()
   }
 
-  @Post('/to-dos')
+  @Post()
   @ApiImplicitBody({ name: 'ToDoRequest', type: ToDoRequest })
   createToDo(@Body() { name }: ToDoRequest): Promise<ToDo> {
     return this.toDoService.createToDo(name)
   }
 
-  @Patch('/to-dos/:id')
+  @Patch('/:id')
   @ApiResponse({ status: 200 })
   async updateToDo(@Param('id') id: number, @Body() { name }: ToDoRequest): Promise<void> {
     await this.toDoService.updateToDo(+id, name)
   }
 
-  @Delete('/to-dos/:id')
+  @Delete('/:id')
   @ApiResponse({ status: 200 })
   deleteToDo(@Param('id') id: number): Promise<void> {
     return this.toDoService.deleteToDo(id)

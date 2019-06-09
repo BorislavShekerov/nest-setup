@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Repository, Transaction } from 'typeorm'
 import { ToDo } from './entities/ToDo.entity'
 
 @Injectable()
@@ -17,6 +17,7 @@ export class ToDoService {
     return this.toDoRepository.save({ name })
   }
 
+  @Transaction()
   async deleteToDo(id: number): Promise<void> {
     const { affected } = await this.toDoRepository.delete(id)
 
