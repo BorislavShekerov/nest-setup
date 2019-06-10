@@ -58,11 +58,14 @@ export class ToDoController {
 
 1 . Service level classes should serve as the main business logic layer. This should be layer using `Repository` instances to retrieve/update entities.
 
-2.  Public service level methods should intiate transactions when there is more than one db operation involved in their execution
+2.  Public service level methods should initiate database transactions when there is more than one db operation involved in their execution
 
 ```kotlin
-@Transaction()
 async deleteToDo(id: number): Promise<void> {
+  this.entityManager.transaction(async () => {
+    ...
+}
+
 ```
 
 3. Service methods should contains sufficient logging, at different levels (majority at debug level `logger.debug`) with only the key events being logged using `logger.log` (INFO level).
