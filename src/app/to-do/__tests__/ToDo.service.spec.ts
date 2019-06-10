@@ -1,5 +1,6 @@
 import { Test } from '@nestjs/testing'
 import { getRepositoryToken } from '@nestjs/typeorm'
+import { EntityManager } from 'typeorm'
 
 import { ToDoService } from '../ToDo.service'
 import { ToDo } from '../entities/ToDo.entity'
@@ -20,6 +21,12 @@ describe('ToDoService', () => {
         {
           provide: getRepositoryToken(ToDo),
           useValue: toDoRepository,
+        },
+        {
+          provide: EntityManager,
+          useValue: {
+            transaction: (transactionFunction) => transactionFunction()
+          },
         },
       ],
     }).compile()
@@ -42,6 +49,7 @@ describe('ToDoService', () => {
     jest.spyOn(toDoRepository, 'delete').mockImplementation(() => Promise.resolve({ affected: 1 }))
 
     await toDoService.deleteToDo(1)
+    expect(toDoRepository.delete).toHaveBeenCalledWith(1)
   })
 
   it('should throw NotFoundException if affected entities is 0', async () => {

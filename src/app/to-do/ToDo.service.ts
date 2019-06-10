@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, Transaction } from 'typeorm'
+import { Repository, TransactionManager, EntityManager } from 'typeorm'
 import { ToDo } from './entities/ToDo.entity'
 
 @Injectable()
@@ -8,6 +8,8 @@ export class ToDoService {
   private logger = new Logger('ToDoService')
 
   constructor(
+    @TransactionManager()
+    private entityManager: EntityManager,
     @InjectRepository(ToDo)
     private readonly toDoRepository: Repository<ToDo>) {
   }
@@ -17,16 +19,18 @@ export class ToDoService {
     return this.toDoRepository.save({ name })
   }
 
-  @Transaction()
+  // Transaction is not really needed here but this is just an example
   async deleteToDo(id: number): Promise<void> {
-    const { affected } = await this.toDoRepository.delete(id)
+    this.entityManager.transaction(async () => {
+      const { affected } = await this.toDoRepository.delete(id)
 
-    if (affected !== 1) {
-      this.logger.warn(`Unable to delete to-do with id: ${id}`)
-      throw new NotFoundException(`To-do with id ${id} not found`)
-    }
+      if (affected !== 1) {
+        this.logger.warn(`Unable to delete to-do with id: ${id}`)
+        throw new NotFoundException(`To-do with id ${id} not found`)
+      }
 
-    this.logger.log(`Successfully deleted to-do: ${id}`)
+      this.logger.log(`Successfully deleted to-do: ${id}`)
+    })
   }
 
   getAll(): Promise<ToDo[]> {
