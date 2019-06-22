@@ -18,6 +18,9 @@ export class RolesGuard implements CanActivate {
       return true
     }
 
+    const request = context.switchToHttp().getRequest()
+    request.user = { email: 'great@abv.bg' }
+
     // TODO pass in context when proper validation logic is implemented
     const user = await this.requestValidationAdapter.validateRequest()
     return user && this.hasRole(user, roles)

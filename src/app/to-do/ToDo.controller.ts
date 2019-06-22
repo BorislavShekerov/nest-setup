@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common'
 import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
 
 import { ToDoService } from './ToDo.service'
@@ -15,13 +15,15 @@ export class ToDoController {
   @Get()
   @ApiResponse({ status: 200, type: ToDo, isArray: true })
   @Roles('ADMIN')
-  getToDos(): Promise<ToDo[]> {
+  getToDos(@Req() request: any): Promise<ToDo[]> {
+    console.log(request.user as any)
     return this.toDoService.getAll()
   }
 
   @Post()
   @ApiImplicitBody({ name: 'ToDoRequest', type: ToDoRequest })
-  createToDo(@Body() { name }: ToDoRequest): Promise<ToDo> {
+  createToDo(@Body() { name }: ToDoRequest, @Req() request: any): Promise<ToDo> {
+    console.log(request.user as any)
     return this.toDoService.createToDo(name)
   }
 

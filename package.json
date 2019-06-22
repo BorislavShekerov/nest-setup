@@ -34,6 +34,7 @@
     "@nestjs/typeorm": "^6.1.1",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",
+    "fastify-cookie": "^3.0.2",
     "fastify-swagger": "^2.4.0",
     "helmet": "^3.18.0",
     "pg": "^7.11.0",
