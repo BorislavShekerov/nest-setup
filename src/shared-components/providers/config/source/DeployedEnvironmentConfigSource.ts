@@ -1,7 +1,7 @@
 import * as Joi from '@hapi/joi'
 
-import { ConfigSource } from './ConfigSource'
 import { DbConfig, LogLevel } from '../../../models'
+import { ConfigSource } from './ConfigSource'
 
 export class DeployedEnvironmentConfigSource implements ConfigSource {
   public getDbConfig(): DbConfig {
@@ -18,38 +18,35 @@ export class DeployedEnvironmentConfigSource implements ConfigSource {
         port: parseInt(process.env.DB_PORT!, 10),
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      }
+        database: process.env.DB_NAME,
+      },
     )
   }
 
   public getUserInterfaceDomain(): string {
     return this.validateConfig<{ domain: string }>(
       Joi.object({
-        domain: Joi.string()
+        domain: Joi.string(),
       }),
       {
-        domain: process.env.LOG_LEVEL
-      }
+        domain: process.env.UI_DOMAIN,
+      },
     ).domain
   }
 
   public getLogLevel(): LogLevel {
     return this.validateConfig<{ logLevel: LogLevel }>(
       Joi.object({
-        logLevel: Joi.string()
+        logLevel: Joi.string(),
       }),
       {
-        logLevel: process.env.LOG_LEVEL
-      }
+        logLevel: process.env.LOG_LEVEL,
+      },
     ).logLevel
   }
 
   private validateConfig<T>(schema: Joi.ObjectSchema, config: Record<string, string | number | undefined>): T {
-    const { error, value: validatedEnvConfig } = Joi.validate(
-      config,
-      schema,
-    )
+    const { error, value: validatedEnvConfig } = Joi.validate(config, schema)
 
     if (error) {
       throw new Error(`Config validation error: ${error.message}`)
