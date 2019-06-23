@@ -7,7 +7,7 @@
 
 ```
 // bad
-const a = 1
+const a = 1;
 
 // Good
 const a = 1
@@ -239,7 +239,6 @@ const nodes = [...foo]
     if (subject === 'Mockingbird') {
       return author === 'Harper Lee'
     }
-
     return false
   })
   ```
@@ -407,11 +406,6 @@ const nodes = [...foo]
     return ['How are you, ', name, '?'].join()
   }
 
-  // bad
-  function sayHi(name) {
-    return `How are you, ${name}?`
-  }
-
   // good
   function sayHi(name) {
     return `How are you, ${name}?`
@@ -430,16 +424,15 @@ const nodes = [...foo]
 
   ```javascript
   // bad
-  ;[1, 2, 3]
+  [1, 2, 3]
     .map(function(x) {
       const y = x + 1
       return x * y
     })
 
-    [
-      // good
-      (1, 2, 3)
-    ].map(x => {
+  // good
+  [1, 2, 3)]
+    .map(x => {
       const y = x + 1
       return x * y
     })
@@ -511,7 +504,9 @@ const nodes = [...foo]
     [
       // good
       ('get', 'post', 'put')
-    ].map(httpMethod => Object.prototype.hasOwnProperty.call(httpMagicObjectWithAVeryLongName, httpMethod))
+    ].map(httpMethod => {
+      return Object.prototype.hasOwnProperty.call(httpMagicObjectWithAVeryLongName, httpMethod)
+    })
   ```
 
 <a name="arrows--one-arg-parens"></a><a name="6.4"></a>
@@ -760,9 +755,6 @@ const nodes = [...foo]
   import foo from 'foo'
   // … some other imports … //
   import { named1, named2 } from 'foo'
-
-  // good
-  import foo, { named1, named2 } from 'foo'
 
   // good
   import foo, { named1, named2 } from 'foo'
@@ -1080,9 +1072,6 @@ const nodes = [...foo]
   if (test) return false
 
   // good
-  if (test) return false
-
-  // good
   if (test) {
     return false
   }
@@ -1201,21 +1190,6 @@ const nodes = [...foo]
   }
 
   // bad
-  if (foo === 123 && bar === 'abc') {
-    thing1()
-  }
-
-  // bad
-  if (foo === 123 && bar === 'abc') {
-    thing1()
-  }
-
-  // bad
-  if (foo === 123 && bar === 'abc') {
-    thing1()
-  }
-
-  // good
   if (foo === 123 && bar === 'abc') {
     thing1()
   }
