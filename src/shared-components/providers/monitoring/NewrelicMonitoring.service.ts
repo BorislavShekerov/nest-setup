@@ -7,12 +7,17 @@ export class NewrelicMonitoringService implements MonitoringService {
   /** Records a web transaction in Newrelic using the identifier. (usually the request url) */
   recordExecution(identifier: string, triggerExecution: () => Promise<any>): Promise<any> {
     return newrelic.startWebTransaction(identifier, async () => {
-      const transaction = newrelic.getTransaction()
+      const monitoringTransaction = newrelic.getTransaction()
 
-      const result = await triggerExecution()
-      transaction.end()
-
-      return result
+      try {
+        const result = await triggerExecution()
+        return result
+      } catch (e) {
+        newrelic.noticeError(e)
+        throw e
+      } finally {
+        monitoringTransaction.end()
+      }
     })
   }
 }

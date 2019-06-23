@@ -1,4 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common'
+import {
+    Body, Controller, Delete, Get, HttpException, Param, Patch, Post, Req
+} from '@nestjs/common'
 import { ApiImplicitBody, ApiResponse } from '@nestjs/swagger'
 
 import { Roles } from '../../shared-components/decorators'
