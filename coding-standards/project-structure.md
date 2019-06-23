@@ -140,6 +140,23 @@ async function bootstrap() {
 
 ```
 
+#### Newrelic setup
+
+Newrelic request monitoring is setup for each request, by a global request interceptor:
+
+```javascript
+{
+  provide: APP_INTERCEPTOR,
+  useClass: MonitoringRequestInterceptor,
+}
+```
+
+New relic configuration is defined in `newrelic.ts`
+
+Monitoring information is pushed for `PROD` and `UAT` environments.
+
+Each request
+
 ### Testing guide
 
 Considering the criticality of the project we should aim to have test coverage at/or above 70%
@@ -148,7 +165,9 @@ Considering the criticality of the project we should aim to have test coverage a
 
 ```javascript
 it('should delete to-do entity', async () => {
-  jest.spyOn(toDoRepository, 'delete').mockImplementation(() => Promise.resolve({ affected: 1 }))
+  jest
+    .spyOn(toDoRepository, 'delete')
+    .mockImplementation(() => Promise.resolve({ affected: 1 }))
 
   await toDoService.deleteToDo(1)
   expect(toDoRepository).toHaveBeenCalledWith(1)
