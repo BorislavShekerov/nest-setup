@@ -1,5 +1,4 @@
-import { Environment } from 'src/shared-components/models'
-
+import { Environment } from '../../models'
 import { ConfigSource, DeployedEnvironmentConfigSource, LocalDevConfigSource } from './source'
 import { LocalTestConfigSource } from './source/LocalTestConfigSource'
 

@@ -9,8 +9,8 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "db-start": "docker-compose down && docker-compose up -d",
     "db-stop": "docker-compose down",
-    "start:dev": "ENV=DEV concurrently --handle-input \"wait-on dist/src/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
-    "start:dev:debug": "ENV=DEV nodemon --config nodemon-debug.json",
+    "start:dev": "ENV=dev concurrently --handle-input \"wait-on dist/src/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
+    "start:dev:debug": "ENV=dev nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/src/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
@@ -37,6 +37,7 @@
     "fastify-cookie": "^3.0.2",
     "fastify-swagger": "^2.4.0",
     "helmet": "^3.18.0",
+    "newrelic": "^5.10.0",
     "pg": "^7.11.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
@@ -47,12 +48,13 @@
     "@nestjs/testing": "^6.0.0",
     "@types/jest": "^23.3.13",
     "@types/joi": "^14.3.3",
+    "@types/newrelic": "^4.11.0",
     "@types/node": "^10.12.18",
     "@types/supertest": "^2.0.7",
     "concurrently": "^4.1.0",
     "fastify": "^2.4.1",
     "husky": "^2.3.0",
-    "jest": "^23.6.0",
+    "jest": "^24.0.2",
     "lint-staged": "^8.1.7",
     "nodemon": "^1.18.9",
     "prettier": "^1.15.3",
@@ -98,5 +100,9 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bullioncapital/foo.git"
   }
 }

@@ -1,7 +1,7 @@
+import { ToDoService } from 'src/app/to-do/ToDo.service'
 import * as request from 'supertest'
 
-import { setUp, cleanDatabase } from './before-each.util'
-import { ToDoService } from 'src/app/to-do/ToDo.service'
+import { cleanDatabase, setUp } from './before-each.util'
 
 describe('integration:ToDoController', () => {
   let app
@@ -17,29 +17,29 @@ describe('integration:ToDoController', () => {
     await cleanDatabase()
   })
 
-  it('/to-dos (GET)', async () => {
+  it('api/to-dos (GET)', async () => {
     const toDo = await toDoService.createToDo('test to-do')
 
     return request(app.getHttpServer())
-      .get('/to-dos')
+      .get('api/to-dos')
       .expect(200)
       .expect([toDo])
   })
 
-  it('/to-dos/1 (DELETE)', async () => {
+  it('api/to-dos/1 (DELETE)', async () => {
     const toDo = await toDoService.createToDo('test to-do')
 
     return request(app.getHttpServer())
-      .delete(`/to-dos/${toDo.id}`)
+      .delete(`api/to-dos/${toDo.id}`)
       .expect(200)
   })
 
-  it('/to-dos/1 (PATCH)', async () => {
+  it('api/to-dos/1 (PATCH)', async () => {
     const updatedName = 'updated name'
     const toDo = await toDoService.createToDo('test to-do')
 
     return request(app.getHttpServer())
-      .patch(`/to-dos/${toDo.id}`)
+      .patch(`api/to-dos/${toDo.id}`)
       .send({ name: updatedName })
       .expect(200)
       .then(async () => {
@@ -48,11 +48,11 @@ describe('integration:ToDoController', () => {
       })
   })
 
-  it('/to-dos (POST)', async () => {
+  it('api/to-dos (POST)', async () => {
     const name = 'to-do name'
 
     return request(app.getHttpServer())
-      .post('/to-dos')
+      .post('api/to-dos')
       .send({ name })
       .expect(201)
       .then(async () => {
@@ -62,5 +62,4 @@ describe('integration:ToDoController', () => {
   })
 
   afterAll(async () => await app.close())
-
 })

@@ -1,19 +1,24 @@
 import { Module } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core'
 import { TerminusModule } from '@nestjs/terminus/dist'
-import { APP_GUARD } from '@nestjs/core'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { ToDoModule } from './to-do'
-import { TypeOrmModuleFactory } from '../shared-components/module-factories'
-import { TerminusHealthCheckService } from '../shared-components/providers/healtcheck/TerminusHealthCheck.service'
 import { RolesGuard } from '../shared-components/guards/RolesGuard'
 import { SessionValidationAdapter } from '../shared-components/guards/SessionValidationAdapter'
+import { TypeOrmModuleFactory } from '../shared-components/module-factories'
+import {
+    TerminusHealthCheckService
+} from '../shared-components/providers/healtcheck/TerminusHealthCheck.service'
+import {
+    MONITORING_SERVICE, MonitoringRequestInterceptor, MonitoringServiceFactory
+} from '../shared-components/providers/monitoring'
+import { ToDoModule } from './to-do'
 
 @Module({
   imports: [
     ToDoModule,
     TypeOrmModule.forRootAsync({
-      useFactory: TypeOrmModuleFactory.create
+      useFactory: TypeOrmModuleFactory.create,
     }),
     TerminusModule.forRootAsync({
       useClass: TerminusHealthCheckService,
@@ -24,8 +29,15 @@ import { SessionValidationAdapter } from '../shared-components/guards/SessionVal
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    SessionValidationAdapter
+    {
+      provide: MONITORING_SERVICE,
+      useValue: MonitoringServiceFactory.getMonitoringServiceForEnvironment(),
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: MonitoringRequestInterceptor,
+    },
+    SessionValidationAdapter,
   ],
 })
-export class AppModule {
-}
+export class AppModule {}
